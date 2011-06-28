@@ -1,0 +1,54 @@
+# -*-rst-*-
+
+Makefile + Module Reloader
+==========================
+
+This workflow uses a makefile with a 'shell' target that runs an Erlang session
+with Mochiweb's 'reloader' module started.
+
+It supports auto-reloading when Erlang modules are recompiled.
+
+Iternative Development
+----------------------
+
+From either the project root or the src directory, run:
+
+ $ make shell
+
+This will start an Erlang shell.
+
+Use the hello module:
+
+ 1> hello:say().
+ hello
+ ok
+
+Modify hello.erl - e.g. change the message to read "hello world!". Don't forget
+to update the test as well.
+
+Run make in either the project root or src:
+
+ $ make
+
+Note that the hello module is reloaded automatically in the Erlang shell.
+
+ 2> hello:say().
+ hello world!
+ ok
+
+Testing
+-------
+
+The makefile has a 'test' target that runs the 'hello' tests by default.
+
+ $ make test
+
+You can specify a different target with the TESTS variable:
+
+ $ make TESTS=some_other_module test
+
+Emacs
+-----
+
+Make commands can be issued within Emacs by running M-x compile. It's common to
+setup a key binding for that command.
